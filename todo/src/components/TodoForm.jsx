@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const TodoForm = () => {
+const TodoForm = ( {addTodo} ) => {
     //Gerenciando o estado
     const [value, setValue] = useState("");
     const [category, setCategory] = useState("");
@@ -9,10 +9,13 @@ const TodoForm = () => {
         e.preventDefault();
         //Verificar se os valores não são nulos
         if(!value || !category) return;
-           // adicionar todo
-           // limpar os campos
-           setValue("");
-           setCategory("");
+           
+        // adicionar todo
+        addTodo(value, category);
+        
+        // limpar os campos
+        setValue("");
+        setCategory("");
         
 
     };
