@@ -38,12 +38,22 @@ function App() {
     setTodos(newTodos);
   };
 
+  const removeTodo = (id) => {
+    const newTodos = [...todos]
+    //retornar para a lista original todos os items q for diferente do id recebino na função e o que tem o id igual retorna nulo
+    const filteredTodos = newTodos.filter((todo) => 
+      todo.id !== id ? todo : null
+    );
+    //atualizar o state
+    setTodos(filteredTodos)
+  }
+
   return (
     <div className="app">
       <h1>Lista de Tarefas</h1>
       <div className="todo-list">
         {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} />
+          <Todo key={todo.id} todo={todo} removeTodo={removeTodo}/>
         ))}
       </div>
       <TodoForm addTodo={addTodo}/>
